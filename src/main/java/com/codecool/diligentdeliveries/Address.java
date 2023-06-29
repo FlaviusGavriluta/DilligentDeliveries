@@ -11,7 +11,6 @@ public class Address {
         this.customerName = customerName;
     }
 
-    // Getters and Setters
     @Override
     public String toString() {
         return "Address{" +
