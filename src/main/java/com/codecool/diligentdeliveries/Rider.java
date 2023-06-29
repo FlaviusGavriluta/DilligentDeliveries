@@ -19,24 +19,41 @@ public class Rider {
     }
 
     public void addParcels(ArrayList<Parcel> parcels) {
-        //Implement
+        this.parcels.addAll(parcels);
     }
 
     public void startRoutine() {
-        //Implement
+        for (Parcel parcel : parcels) {
+            boolean deliverySuccessful = parcel.deliver();
+            if (!deliverySuccessful) {
+                boolean reattemptSuccessful = reattempt(parcel);
+                if (!reattemptSuccessful) {
+                    handleFailedDelivery();
+                }
+            }
+            handleSuccessfulDelivery(parcel);
+        }
     }
 
     private boolean reattempt(Parcel parcel) {
-        //Implement
+        if (report.getReattemptsLeft() > 0) {
+            report.decrementReattemptsLeft();
+            return parcel.deliver();
+        }
         return false;
     }
 
     private void handleSuccessfulDelivery(Parcel parcel) {
-        //Implement
+        if (parcel.deliver()) {
+            report.incrementSuccessfulDeliveries();
+        }
+    }
+
+    private void handleFailedDelivery() {
+        // Additional logic for handling failed delivery
     }
 
     public Report getReport() {
-        //Implement
-        return null;
+        return report;
     }
 }
