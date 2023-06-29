@@ -23,6 +23,7 @@ public class Rider {
     private boolean reattempt(Parcel parcel)
     {
         //Implement
+        return false;
     }
 
     private void handleSuccessfulDelivery(Parcel parcel)
@@ -33,5 +34,6 @@ public class Rider {
     public Report getReport()
     {
         //Implement
+        return null;
     }
 }
