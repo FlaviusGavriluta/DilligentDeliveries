@@ -3,7 +3,6 @@ package com.codecool.diligentdeliveries;
 import java.util.Random;
 
 public class Application {
-
     private static final Random random = new Random();
 
     private static String getRandomStreetAddress() {

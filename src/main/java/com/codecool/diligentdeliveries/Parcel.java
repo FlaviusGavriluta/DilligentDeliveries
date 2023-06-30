@@ -1,8 +1,11 @@
 package com.codecool.diligentdeliveries;
 
+import java.util.Random;
+
 public class Parcel {
     private int id;
     private Address address;
+    private static final Random random = new Random();
 
     public Parcel(int id, Address address) {
         this.id = id;
@@ -10,10 +13,9 @@ public class Parcel {
     }
 
     public boolean deliver() {
-        // Implementation for delivery logic
-        // Return true if the delivery is successful, at least 50% of the time
-        // You can use randomization for this
-        return false;
+        int successRate = random.nextInt(51) + 50;
+        boolean deliverySuccessful = random.nextInt(100) < successRate;
+        return deliverySuccessful;
     }
 
     @Override
