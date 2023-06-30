@@ -14,5 +14,7 @@ public class Application {
     public static void main(String[] args) {
         int packages = 10;
         int maximumReattempts = 5;
+        ReattemptStrategy reattemptStrategy = new ReattemptStrategy();
+        DeliveryService deliveryService = new DeliveryService(reattemptStrategy);
     }
 }

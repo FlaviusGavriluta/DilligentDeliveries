@@ -5,55 +5,28 @@ import java.util.ArrayList;
 public class Rider {
     private int id;
     private String name;
-    private int reattemptPerAddress;
-    private int maximumReattempts;
-    private ArrayList<Parcel> parcels;
-    private Report report;
+    private DeliveryService deliveryService;
+    private ReattemptStrategy reattemptStrategy;
+    private ReportGenerator reportGenerator;
 
-    public Rider(int id, int reattemptPerAddress, int maximumReattempts) {
+    public Rider(int id, String name, DeliveryService deliveryService, ReattemptStrategy reattemptStrategy, ReportGenerator reportGenerator) {
         this.id = id;
-        this.reattemptPerAddress = reattemptPerAddress;
-        this.maximumReattempts = maximumReattempts;
-        this.parcels = new ArrayList<>();
-        this.report = new Report(0, maximumReattempts);
+        this.name = name;
+        this.deliveryService = deliveryService;
+        this.reattemptStrategy = reattemptStrategy;
+        this.reportGenerator = reportGenerator;
     }
 
-    public void addParcels(ArrayList<Parcel> parcels) {
-        this.parcels.addAll(parcels);
+    public void addParcel(Parcel parcel) {
+        deliveryService.addParcel(parcel);
     }
 
     public void startRoutine() {
-        for (Parcel parcel : parcels) {
-            boolean deliverySuccessful = parcel.deliver();
-            if (!deliverySuccessful) {
-                boolean reattemptSuccessful = reattempt(parcel);
-                if (!reattemptSuccessful) {
-                    handleFailedDelivery();
-                }
-            }
-            handleSuccessfulDelivery(parcel);
-        }
+        deliveryService.startRoutine();
+        reportGenerator.generateReport(this);
     }
 
-    private boolean reattempt(Parcel parcel) {
-        if (report.getReattemptsLeft() > 0) {
-            report.decrementReattemptsLeft();
-            return parcel.deliver();
-        }
-        return false;
-    }
-
-    private void handleSuccessfulDelivery(Parcel parcel) {
-        if (parcel.deliver()) {
-            report.incrementSuccessfulDeliveries();
-        }
-    }
-
-    private void handleFailedDelivery() {
-        // Additional logic for handling failed delivery
-    }
-
-    public Report getReport() {
-        return report;
+    public int getReattemptsLeft() {
+        return reattemptStrategy.getReattemptsLeft();
     }
 }
