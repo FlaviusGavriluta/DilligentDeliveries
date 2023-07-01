@@ -2,8 +2,9 @@ package com.codecool.diligentdeliveries;
 
 public class ReattemptStrategy {
     private int reattemptsLeft;
+    private Parcel parcel;
 
-    public ReattemptStrategy(){
+    public ReattemptStrategy() {
         reattemptsLeft = 0;
     }
 
