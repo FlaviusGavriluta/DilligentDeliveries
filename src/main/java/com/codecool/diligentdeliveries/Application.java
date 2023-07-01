@@ -20,4 +20,16 @@ public class Application {
         ReattemptStrategy reattemptStrategy = new ReattemptStrategy(reattemptLocations);
         DeliveryService deliveryService = new DeliveryService(reattemptStrategy);
     }
+
+    private static String generateRandomAddress() {
+        return "Random Street "
+                + random.nextInt(100, 1000)
+                + " Number " + random.nextInt(0, 100);
+    }
+
+    private static String generateRandomCustomerName() {
+        List<String> customerNames = Arrays.asList("John", "Jane", "Mike", "Emily");
+        int randomIndex = random.nextInt(customerNames.size());
+        return customerNames.get(randomIndex);
+    }
 }

@@ -1,7 +1,5 @@
 package com.codecool.diligentdeliveries;
 
-import java.util.ArrayList;
-
 public class Rider {
     private int id;
     private String name;
