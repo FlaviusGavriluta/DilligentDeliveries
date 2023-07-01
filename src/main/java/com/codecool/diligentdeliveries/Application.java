@@ -1,5 +1,7 @@
 package com.codecool.diligentdeliveries;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 
 public class Application {
@@ -14,7 +16,8 @@ public class Application {
     public static void main(String[] args) {
         int packages = 10;
         int maximumReattempts = 5;
-        ReattemptStrategy reattemptStrategy = new ReattemptStrategy();
+        List<String> reattemptLocations = Arrays.asList("Location1", "Location2", "Location3", "Location4", "Location5");
+        ReattemptStrategy reattemptStrategy = new ReattemptStrategy(reattemptLocations);
         DeliveryService deliveryService = new DeliveryService(reattemptStrategy);
     }
 }

@@ -31,6 +31,9 @@ public class Parcel {
     }
 
     public int getReattemptsLeft() {
-        return reattemptsLeft;
+        return maximumReattempts - (maximumReattempts - reattemptsLeft);
+    }
+
+    public void setReattemptLocation(String chosenLocation) {
     }
 }
