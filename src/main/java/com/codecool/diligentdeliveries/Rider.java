@@ -27,4 +27,12 @@ public class Rider {
     public int getReattemptsLeft() {
         return reattemptStrategy.getReattemptsLeft();
     }
+
+    public static String getName(Rider rider) {
+        return rider.name;
+    }
+
+    public int getSuccessfulDeliveries() {
+        return 0;
+    }
 }
