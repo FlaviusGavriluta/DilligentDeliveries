@@ -1,6 +1,6 @@
 package com.codecool.diligentdeliveries;
 
-import java.util.List;
+import java.util.*;
 
 public class DeliverySimulation {
     public static void runSimulation(List<Rider> riders, int rounds) {
@@ -12,18 +12,9 @@ public class DeliverySimulation {
     }
 
     public static Rider selectBestRider(List<Rider> riders) {
-        Rider bestRider = riders.get(0); // Assume the first rider is the best initially
-
-        for (int i = 1; i < riders.size(); i++) {
-            Rider currentRider = riders.get(i);
-            int totalDeliveriesCurrent = currentRider.getSuccessfulDeliveries();
-            int totalDeliveriesBest = bestRider.getSuccessfulDeliveries();
-
-            if (totalDeliveriesCurrent > totalDeliveriesBest) {
-                bestRider = currentRider; // Update the best rider if a better one is found
-            }
-        }
-        return bestRider;
+        return riders.stream()
+                .max(Comparator.comparingInt(Rider::getSuccessfulDeliveries))
+                .orElse(null);
     }
 
     public static void printSummary(Rider bestRider) {
