@@ -7,7 +7,7 @@ public class DeliveryService {
     private int successfulDeliveries;
     private ReattemptStrategy reattemptStrategy;
 
-    public DeliveryService(ReattemptStrategy reattemptStrategy) {
+    public DeliveryService() {
         parcels = new ArrayList<>();
         successfulDeliveries = 0;
         this.reattemptStrategy = reattemptStrategy;
